@@ -23,6 +23,7 @@ jobs:
     executor: checkov/default
     steps:
       - checkout
+      - checkov/install
       - checkov/scan:
           directory: .
           soft-fail: true
