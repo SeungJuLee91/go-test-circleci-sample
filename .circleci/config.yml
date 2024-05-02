@@ -2,8 +2,11 @@
 # 
 # Check https://circleci.com/docs/2.0/language-go/ for more details
 version: 2.1
+orbs:
+  bridgecrew: bridgecrew/checkov@1.0.5
 jobs:
   build:
+    executor: checkov/default
     docker:
       # specify the version
       - image: circleci/golang:1.8
@@ -19,7 +22,11 @@ jobs:
     ####   /go/src/bitbucket.org/circleci/go-tool
     working_directory: /go/src/github.com/tweeeety/go-test-by-circleci-sample
     steps:
-      - checkout
+       - checkout
+        - checkov/scan:
+          directory: .
+          api-key-variable: sjleeTest 
+          prisma-api-url: https://api.sg.prismacloud.io
 
       # specify any bash command here prefixed with `run: `
       - run: go get -v -t -d ./...
