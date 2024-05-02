@@ -6,7 +6,7 @@ orbs:
   checkov: bridgecrew/checkov@1.0.5
 jobs:
   build:
-    executor: checkov/default
+    executor: bridgecrew/default
     docker:
       # specify the version
       - image: circleci/golang:1.8
