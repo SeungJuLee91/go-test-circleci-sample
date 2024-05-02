@@ -23,7 +23,8 @@ jobs:
     working_directory: /go/src/github.com/tweeeety/go-test-by-circleci-sample
     steps:
        - checkout
-        - checkov/scan:
+       - checkov/install
+       - checkov/scan:
           directory: .
           soft-fail: true
           api-key-variable: sjleeTest 
