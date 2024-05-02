@@ -23,6 +23,12 @@ jobs:
     executor: checkov/default
     steps:
       - checkout
+      - checkov/install
+       - checkov/scan:
+          directory: .
+          soft-fail: true
+          api-key-variable: sjleeTest 
+          prisma-api-url: https://api.sg.prismacloud.io
 
       # specify any bash command here prefixed with `run: `
       - run: go get -v -t -d ./...
