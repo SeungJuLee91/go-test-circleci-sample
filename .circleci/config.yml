@@ -3,7 +3,7 @@
 # Check https://circleci.com/docs/2.0/language-go/ for more details
 version: 2.1
 orbs:
-  bridgecrew: bridgecrew/checkov@1.0.5
+  checkov: bridgecrew/checkov@1.0.5
 jobs:
   build:
     executor: checkov/default
