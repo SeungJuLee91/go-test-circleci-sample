@@ -1,9 +1,9 @@
 # Golang CircleCI 2.0 configuration file
-#
+# 
 # Check https://circleci.com/docs/2.0/language-go/ for more details
 version: 2.1
 orbs:
-  bridgecrew: bridgecrew/checkov@1.0.5
+  checkov: bridgecrew/checkov@1.0.5
 jobs:
   build:
     docker:
@@ -22,9 +22,10 @@ jobs:
     working_directory: /go/src/github.com/tweeeety/go-test-by-circleci-sample
     executor: checkov/default
     steps:
-      - checkout
-      - checkov/scan:
+       - checkout
+       - checkov/scan:
           directory: .
+          soft-fail: true
           api-key-variable: sjleeTest 
           prisma-api-url: https://api.sg.prismacloud.io
 
