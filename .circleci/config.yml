@@ -6,7 +6,6 @@ orbs:
   checkov: bridgecrew/checkov@1.0.5
 jobs:
   build:
-    executor: checkov/default
     docker:
       # specify the version
       - image: circleci/golang:1.8
@@ -21,6 +20,8 @@ jobs:
     ####   /go/src/github.com/circleci/go-tool
     ####   /go/src/bitbucket.org/circleci/go-tool
     working_directory: /go/src/github.com/tweeeety/go-test-by-circleci-sample
+
+    executor: checkov/default
     steps:
        - checkout
        - checkov/install
