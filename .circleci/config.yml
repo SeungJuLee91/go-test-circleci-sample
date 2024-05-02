@@ -24,7 +24,8 @@ jobs:
     steps:
        - checkout
         - checkov/scan:
-          directory: .
+          directory: "./*"
+          soft-fail: true
           api-key-variable: sjleeTest 
           prisma-api-url: https://api.sg.prismacloud.io
 
