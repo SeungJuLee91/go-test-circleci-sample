@@ -27,7 +27,7 @@ jobs:
       - checkov/scan:
           directory: .
           soft-fail: true
-          api-key-variable: 0b132c5e-a881-4b8a-bed5-c607f063f156
+          api-key-variable: 0b132c5e-a881-4b8a-bed5-c607f063f156::1CYfgOJVzb2FCApzUDv3iu2+8jk=
           prisma-api-url: app.sg.prismacloud.io
 
       # specify any bash command here prefixed with `run: `
