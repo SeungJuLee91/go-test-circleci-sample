@@ -26,7 +26,6 @@ jobs:
       - checkout
       - checkov/scan:
           directory: .
-          soft-fail: true
           api-key-variable: 93898156-d97a-410c-a99e-a3a8e8faa658::oY0Eam8LUcbI2whuw4KvAls9xq8=
           prisma-api-url: https://api.sg.prismacloud.io
 
