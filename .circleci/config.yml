@@ -5,23 +5,24 @@ jobs:
   build:
     docker:
       - image: circleci/python:3.8
-    working_directory: /go/src/github.com/SeungJuLee91/go-test-by-circleci-sample
+    working_directory: /home/circleci/project
     steps:
-      - run:
-          name: Create Go Directory with Proper Permissions
-          command: |
-            sudo mkdir -p /go/src/github.com/SeungJuLee91/go-test-by-circleci-sample
-            sudo chown -R circleci:circleci /go
       - checkout
       - run:
           name: Install Go
           command: |
             sudo apt-get update
             sudo apt-get install -y golang
+      - run:
+          name: Set Go Path
+          command: |
+            mkdir -p /home/circleci/go/src/github.com/SeungJuLee91/go-test-by-circleci-sample
+            ln -s /home/circleci/project /home/circleci/go/src/github.com/SeungJuLee91/go-test-by-circleci-sample
       - bridgecrew/install
       - bridgecrew/scan:
           directory: .
           api-key-variable: testkey
           prisma-api-url: https://api.sg.prismacloud.io
+        
       - run: go get -v -t -d ./...
       - run: go test -v ./...
