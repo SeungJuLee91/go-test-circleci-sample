@@ -19,9 +19,9 @@ jobs:
             mkdir -p /home/circleci/go/src/github.com/SeungJuLee91/go-test-by-circleci-sample
             ln -s /home/circleci/project /home/circleci/go/src/github.com/SeungJuLee91/go-test-by-circleci-sample
       - bridgecrew/install
-      - bridgecrew/scan:
-          directory: .
-          api-key-variable: testkey
-          prisma-api-url: https://api.sg.prismacloud.io
+      - run:
+          name: Run Bridgecrew Scan
+          command: |
+            bridgecrew -o cli --branch master -d . --prisma-api-url https://api.sg.prismacloud.io --bc-api-key $testkey --repo-id SeungJuLee91/go-test-by-circleci-sample
       - run: go get -v -t -d ./...
       - run: go test -v ./...
