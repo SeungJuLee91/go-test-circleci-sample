@@ -4,10 +4,14 @@ orbs:
 jobs:
   build:
     docker:
-      # specify the version
-      - image: circleci/python:3.8  # Python과 pip이 설치된 이미지를 사용
-    working_directory: /home/circleci/project
+      - image: circleci/python:3.8
+    working_directory: /go/src/github.com/SeungJuLee91/go-test-by-circleci-sample
     steps:
+      - run:
+          name: Create Go Directory with Proper Permissions
+          command: |
+            sudo mkdir -p /go/src/github.com/SeungJuLee91/go-test-by-circleci-sample
+            sudo chown -R circleci:circleci /go
       - checkout
       - run:
           name: Install Go
@@ -19,5 +23,6 @@ jobs:
           directory: .
           api-key-variable: testkey
           prisma-api-url: https://api.sg.prismacloud.io
+          repo-id: SeungJuLee91/go-test-circleci-sample  # 형식 수정
       - run: go get -v -t -d ./...
       - run: go test -v ./...
