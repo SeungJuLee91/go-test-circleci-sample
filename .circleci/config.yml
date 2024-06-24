@@ -23,6 +23,5 @@ jobs:
           directory: .
           api-key-variable: testkey
           prisma-api-url: https://api.sg.prismacloud.io
-          repo-id: SeungJuLee91/go-test-circleci-sample  # 형식 수정
       - run: go get -v -t -d ./...
       - run: go test -v ./...
