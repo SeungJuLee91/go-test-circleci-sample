@@ -6,7 +6,7 @@ jobs:
     docker:
       # specify the version
       - image: circleci/python:3.8  # Python과 pip이 설치된 이미지를 사용
-    working_directory: /go/src/github.com/SeungJuLee91/go-test-by-circleci-sample
+    working_directory: /home/circleci/project
     steps:
       - checkout
       - run:
