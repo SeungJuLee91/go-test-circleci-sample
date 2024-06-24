@@ -1,6 +1,3 @@
-# Golang CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-go/ for more details
 version: 2.1
 orbs:
   bridgecrew: bridgecrew/bridgecrew@1.0.5
@@ -8,24 +5,19 @@ jobs:
   build:
     docker:
       # specify the version
-      - image: circleci/golang:1.8
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
-    #### TEMPLATE_NOTE: go expects specific checkout path representing url
-    #### expecting it in the form of
-    ####   /go/src/github.com/circleci/go-tool
-    ####   /go/src/bitbucket.org/circleci/go-tool
+      - image: circleci/python:3.8  # Python과 pip이 설치된 이미지를 사용
     working_directory: /go/src/github.com/SeungJuLee91/go-test-by-circleci-sample
-    executor: bridgecrew/default
     steps:
       - checkout
+      - run:
+          name: Install Go
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y golang
       - bridgecrew/install
       - bridgecrew/scan:
           directory: .
           api-key-variable: testkey
           prisma-api-url: https://api.sg.prismacloud.io
-      # specify any bash command here prefixed with `run: `
       - run: go get -v -t -d ./...
       - run: go test -v ./...
